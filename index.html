@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Accessible Responsive Calculator</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .calculator {
+    background: #222;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    width: 320px;
+    max-width: 90vw;
+    padding: 20px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+  }
+
+  .calculator-screen {
+    background-color: #1e1e1e;
+    color: #fff;
+    font-size: 2rem;
+    padding: 15px 20px;
+    border-radius: 8px;
+    text-align: right;
+    overflow-x: auto;
+    user-select: text;
+  }
+  .calculator-screen:focus {
+    outline: 3px solid #4caf50;
+  }
+
+  .calculator-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 60px);
+    gap: 12px;
+  }
+
+  button {
+    background-color: #444;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.25rem;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+  }
+
+  button:hover,
+  button:focus-visible {
+    background-color: #5a5a5a;
+  }
+
+  button:focus {
+    outline: 3px solid #4caf50;
+  }
+
+  button.operator {
+    background-color: #f57c00;
+  }
+
+  button.operator:hover,
+  button.operator:focus-visible {
+    background-color: #fb8c00;
+  }
+
+  button.clear {
+    background-color: #e53935;
+  }
+
+  button.clear:hover,
+  button.clear:focus-visible {
+    background-color: #ef5350;
+  }
+
+  /* "=" button spans 2 rows on left side */
+  button.equal-sign {
+    background-color: #4caf50;
+    grid-row: 3 / span 3;
+    grid-column: 4;
+  }
+
+  button.equal-sign:hover,
+  button.equal-sign:focus-visible {
+    background-color: #66bb6a;
+  }
+
+  /* Zero button spans two columns (columns 2 and 3) in the bottom row */
+  button.zero {
+    grid-column: 2 / span 2;
+  }
+
+  button.decimal {
+    grid-row: 5;
+  }
+</style>
+</head>
+<body>
+
+<div class="calculator" role="region" aria-label="Calculator">
+  <div
+    class="calculator-screen"
+    role="textbox"
+    aria-live="polite"
+    aria-label="Calculator display"
+    tabindex="0"
+    id="display"
+    aria-readonly="true"
+  >
+    0
+  </div>
+
+  <div class="calculator-keys">
+    <button type="button" class="clear" aria-label="Clear" id="clear">C</button>
+    <button type="button" class="operator" aria-label="Divide" data-action="divide">÷</button>
+    <button type="button" class="operator" aria-label="Multiply" data-action="multiply">×</button>
+    <button type="button" class="operator" aria-label="Subtract" data-action="subtract">−</button>
+
+    <button type="button" aria-label="7" data-number>7</button>
+    <button type="button" aria-label="8" data-number>8</button>
+    <button type="button" aria-label="9" data-number>9</button>
+    <button type="button" class="operator" aria-label="Add" data-action="add">+</button>
+
+    <button type="button" aria-label="4" data-number>4</button>
+    <button type="button" aria-label="5" data-number>5</button>
+    <button type="button" aria-label="6" data-number>6</button>
+    
+    <button type="button" aria-label="1" data-number>1</button>
+    <button type="button" aria-label="2" data-number>2</button>
+    <button type="button" aria-label="3" data-number>3</button>
+
+    <button type="button" class="equal-sign" aria-label="Equals" id="equal">=</button>
+    <button type="button" aria-label="0" class="zero" data-number>0</button>
+    <button type="button" aria-label="Decimal point" class="decimal" data-decimal>.</button>
+  </div>
+</div>
+
+</body>
+</html>
